@@ -40,7 +40,12 @@ async function getByName(name) {
         }
 
         const data = await response.json();
-        console.log("Données reçues :", data);
+
+        divCards.innerHTML += ``;
+
+        data.data.forEach(anime => {
+            addAnime(anime);
+        });
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -61,7 +66,32 @@ async function getByClassement(rank) {
         }
 
         const data = await response.json();
-        console.log("Données reçues :", data);
+
+        divCards.innerHTML += ``;
+        addAnime(data);
+
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
+    }
+}
+
+async function getByID(id) {
+    try {
+        const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, {
+            method: "GET",
+            headers: {
+                'x-rapidapi-key': KEY,
+                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+
+        const data = await response.json();
+
+        divCards.innerHTML += ``;
+        addAnime(data);
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -110,3 +140,25 @@ function onRecherche(e) {
             break;
     }
 }
+
+function addAnime(anime) {
+
+    divCards.innerHTML += `
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <img src="${anime.image}" class="card-img-top" alt="${anime.title}">
+            <div class="card-body">
+                <h5 class="card-title">${anime.title}</h5>
+                <p class="card-text">${anime.synopsis.slice(0, 100)}...</p>
+                <a href="${anime.link}" target="_blank" class="btn btn-primary">Voir sur MAL</a>
+            </div>
+        </div>
+    `;
+}
+
+
+
+
+
+
+
+
