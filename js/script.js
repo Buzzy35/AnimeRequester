@@ -1,3 +1,5 @@
+const divCards = document.getElementById("cards");
+
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -41,7 +43,7 @@ async function getByName(name) {
 
         const data = await response.json();
 
-        divCards.innerHTML += ``;
+        divCards.innerHTML = ``;
 
         data.data.forEach(anime => {
             addAnime(anime);
@@ -67,7 +69,7 @@ async function getByClassement(rank) {
 
         const data = await response.json();
 
-        divCards.innerHTML += ``;
+        divCards.innerHTML = ``;
         addAnime(data);
 
     } catch (error) {
@@ -90,35 +92,13 @@ async function getByID(id) {
 
         const data = await response.json();
 
-        divCards.innerHTML += ``;
+        divCards.innerHTML = ``;
         addAnime(data);
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
     }
 }
-
-async function getByID(id) {
-    try {
-        const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, {
-            method: "GET",
-            headers: {
-                'x-rapidapi-key': KEY,
-                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
-            }
-        });
-        if (!response.ok) {
-            throw new Error("Erreur HTTP : " + response.status);
-        }
-
-        const data = await response.json();
-        console.log("Données reçues :", data);
-
-    } catch (error) {
-        console.error("Erreur lors du fetch :", error);
-    }
-}
-
 
 function onRecherche(e) {
     e.preventDefault();
