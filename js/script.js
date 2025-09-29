@@ -1,4 +1,3 @@
-
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -13,56 +12,24 @@ function getKey() {
     if (cookieValue) {
         return cookieValue;
     } else {
-        const key = prompt("Quelle est votre cle d'API");
+        const cookieValue = prompt("Quelle est votre cle d'API");
 
         let date = new Date();
         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
         let expires = "expires=" + date.toUTCString();
 
-        document.cookie = `KEY=${key}; ${expires}; path=/`;
+        document.cookie = `KEY=${cookieValue}; ${expires}; path=/`;
     }
-    return key;
+    return cookieValue;
 }
 
 const KEY = getKey();
 console.log(KEY);
 
-
 const URL = `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=Fullmetal`;
 
-function getByName(name) {
-
-}
-
-function getByClassement() {
-
-}
-
-function getByID(id) {
-
-}
 
 
-function onRecherche(e) {
-    e.preventDefault();
-
-    const data = new FormData(e.target);
-
-    switch (data.get("rechercheType")) {
-        case "animeName":
-            getByName(data.get("text"));
-            break;
-        case "classement":
-            getByClassement();
-            break;
-        case "animeID":
-            getByID(data.get("text"));
-            break;
-        default:
-            console.error("Type de recherche invalide");
-            break;
-    }
-}
 async function getData() {
     try {
         const response = await fetch(URL, {
@@ -84,6 +51,41 @@ async function getData() {
         console.error("Erreur lors du fetch :", error);
     }
 }
+
+function getByName(name) {
+
+}
+
+function getByClassement() {
+
+}
+
+function getByID(id) {
+
+}
+
+function onRecherche(e) {
+    e.preventDefault();
+
+    const data = new FormData(e.target);
+
+    switch (data.get("rechercheType")) {
+        case "animeName":
+            getByName(data.get("text"));
+            break;
+        case "classement":
+            getByClassement();
+            break;
+        case "animeID":
+            getByID(data.get("text"));
+            break;
+        default:
+            console.error("Type de recherche invalide");
+            break;
+    }
+}
+
+
 
 
 
