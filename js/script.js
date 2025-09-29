@@ -10,7 +10,7 @@ function getKey() {
         }
     }
     if (cookieValue) {
-        const key = cookieValue;
+        return cookieValue;
     } else {
         const key = prompt("Quelle est votre cle d'API");
 
@@ -18,7 +18,7 @@ function getKey() {
         date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
         let expires = "expires=" + date.toUTCString();
 
-        document.cookie = `KEY=${KEY}; ${expires}; path=/`;
+        document.cookie = `KEY=${key}; ${expires}; path=/`;
     }
     return key;
 }
