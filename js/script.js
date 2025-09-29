@@ -1,3 +1,4 @@
+
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -27,7 +28,36 @@ const KEY = getKey();
 console.log(KEY);
 
 
+const rechercheType = document.getElementById("rechercheType");
+const btnRechercher = document.getElementById("Rechercher");    
+const btnEffacer = document.getElementById("Effacer");
+let text = document.getElementById("text");
+
 const URL = `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=Fullmetal`;
+
+function Effacer() {
+    text.value = "";
+}
+
+function Recherche() {
+    switch (rechercheType.value) {
+        case "animeName":
+            let animeName = text.value;
+            console.log(animeName);
+            break;
+        case "classement":
+            let classement = text.value;
+            console.log(classement);
+            break;
+        case "animeID":
+            let animeID = text.value;
+            console.log(animeID);
+            break;
+        default:
+            console.error("Type de recherche inconnu :", rechercheType.value);
+            return;
+    }
+}
 
 async function getData() {
     try {
