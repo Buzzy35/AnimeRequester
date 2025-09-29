@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Anime Requester</title>
 </head>
 <body>
-<select id="rechercheType">
+<form action="">
+<select id="rechercheType" class="form-select form-select-lg mb-3" aria-label="Large select example">
+  <option selected>Ouvrez ce menu de sélection</option>
     <option value="animeName">Recherche par Nom de l'anime</option>
     <option value="classement">Recherche par Classement de l'anime</option>
     <option value="animeID">Recherche par ID</option>
 </select>
-<imput type="text" id="animeName" placeholder="Recherche par Nom de l'anime">
-<imput type="text" id="classement" placeholder="Recherche par Classement de l'anime">
-<imput type="text" id="animeID" placeholder="Recherche par ID">
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
+  <imput type="text"  class="form-control"id="Text">
+</div>
+<button id="Recherche" type="button" class="btn btn-primary btn-">Recherche</button>
+<button id="Effacer" type="button" class="btn btn-secondary btn-">Effacer</button>
+</form>
 
 
 <script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
