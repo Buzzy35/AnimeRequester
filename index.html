@@ -8,8 +8,8 @@
     <title>Anime Requester</title>
 </head>
 <body>
-<form onsunmit="Recherche(e)">
-    <select id="rechercheType" class="form-select form-select-lg mb-3" aria-label="Large select example">
+<form onsubmit="onRecherche(event)">
+    <select id="rechercheType" name="rechercheType" class="form-select form-select-lg mb-3" aria-label="Large select example">
         <option selected>Ouvrez ce menu de sélection</option>
         <option value="animeName">Recherche par Nom de l'anime</option>
         <option value="classement">Recherche par Classement de l'anime</option>
@@ -18,7 +18,7 @@
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
-        <input type="text" class="form-control" id="Text">
+        <input type="text" name="text" class="form-control" id="Text">
     </div>
     <button id="Recherche" type="submit" class="btn btn-primary btn-">Recherche</button>
     <button id="Effacer" type="button" class="btn btn-secondary btn-">Effacer</button>

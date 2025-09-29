@@ -28,42 +28,41 @@ const KEY = getKey();
 console.log(KEY);
 
 
-const rechercheType = document.getElementById("rechercheType");
-const btnRechercher = document.getElementById("Rechercher");
-const btnEffacer = document.getElementById("Effacer");
-let text = document.getElementById("text");
-
 const URL = `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=Fullmetal`;
 
-function Effacer() {
-    text.value = "";
+function getByName(name) {
+
 }
 
-function Recherche(e) {
+function getByClassement() {
+
+}
+
+function getByID(id) {
+
+}
 
 
+function onRecherche(e) {
+    e.preventDefault();
 
-    if (btnRechercher.clicked == true) {
-        switch (rechercheType.value) {
-            case "animeName":
-                let animeName = text.value;
-                console.log(animeName);
-                break;
-            case "classement":
-                let classement = text.value;
-                console.log(classement);
-                break;
-            case "animeID":
-                let animeID = text.value;
-                console.log(animeID);
-                break;
-            default:
-                console.error("Type de recherche inconnu :", rechercheType.value);
-                return;
-        }
+    const data = new FormData(e.target);
+
+    switch (data.get("rechercheType")) {
+        case "animeName":
+            getByName(data.get("text"));
+            break;
+        case "classement":
+            getByClassement();
+            break;
+        case "animeID":
+            getByID(data.get("text"));
+            break;
+        default:
+            console.error("Type de recherche invalide");
+            break;
     }
 }
-
 async function getData() {
     try {
         const response = await fetch(URL, {
