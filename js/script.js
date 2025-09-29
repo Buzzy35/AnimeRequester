@@ -29,7 +29,7 @@ console.log(KEY);
 
 
 const rechercheType = document.getElementById("rechercheType");
-const btnRechercher = document.getElementById("Rechercher");    
+const btnRechercher = document.getElementById("Rechercher");
 const btnEffacer = document.getElementById("Effacer");
 let text = document.getElementById("text");
 
@@ -39,23 +39,28 @@ function Effacer() {
     text.value = "";
 }
 
-function Recherche() {
-    switch (rechercheType.value) {
-        case "animeName":
-            let animeName = text.value;
-            console.log(animeName);
-            break;
-        case "classement":
-            let classement = text.value;
-            console.log(classement);
-            break;
-        case "animeID":
-            let animeID = text.value;
-            console.log(animeID);
-            break;
-        default:
-            console.error("Type de recherche inconnu :", rechercheType.value);
-            return;
+function Recherche(e) {
+
+
+
+    if (btnRechercher.clicked == true) {
+        switch (rechercheType.value) {
+            case "animeName":
+                let animeName = text.value;
+                console.log(animeName);
+                break;
+            case "classement":
+                let classement = text.value;
+                console.log(classement);
+                break;
+            case "animeID":
+                let animeID = text.value;
+                console.log(animeID);
+                break;
+            default:
+                console.error("Type de recherche inconnu :", rechercheType.value);
+                return;
+        }
     }
 }
 
