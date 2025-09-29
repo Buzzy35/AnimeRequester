@@ -1,3 +1,5 @@
+const divCards = document.getElementById("cards");
+
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -40,7 +42,12 @@ async function getByName(name) {
         }
 
         const data = await response.json();
-        CreeCartes(data.data); 
+
+        divCards.innerHTML += ``;
+
+        data.data.forEach(anime => {
+            addAnime(anime);
+        });
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -61,7 +68,9 @@ async function getByClassement(rank) {
         }
 
         const data = await response.json();
-        CreeCartes(data.data); 
+
+        divCards.innerHTML += ``;
+        addAnime(data);
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -82,7 +91,9 @@ async function getByID(id) {
         }
 
         const data = await response.json();
-        CreeCartes(data.data); 
+
+        divCards.innerHTML += ``;
+        addAnime(data);
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -111,31 +122,19 @@ function onRecherche(e) {
     }
 }
 
-function CreeCartes(anime) {
-    const container = document.getElementById("resultats");
-    
-    anime.forEach(anime => {
-        const card = document.createElement("div");
-        card.innerHTML = `
-            <div>
-                <img src="${anime.image}" alt="${anime.title}">
-                <div>
-                    <h5>${anime.title}</h5>
-                    <p>
-                        <a>Genres:</a> ${anime.genres}<br>
-                        <a>Classement:</a> ${anime.ranking}<br>
-                        <a>Episodes:</a> ${anime.episodes}
-                    </p>
-                </div>
-                <div>
-                    <a>ID: ${anime._id}</a>
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
+function addAnime(anime) {
 
+    divCards.innerHTML += `
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <img src="${anime.image}" class="card-img-top" alt="${anime.title}">
+            <div class="card-body">
+                <h5 class="card-title">${anime.title}</h5>
+                <p class="card-text">${anime.synopsis.slice(0, 100)}...</p>
+                <a href="${anime.link}" target="_blank" class="btn btn-primary">Voir sur MAL</a>
+            </div>
+        </div>
+    `;
+}
 
 
 
