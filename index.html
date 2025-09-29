@@ -2,14 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" rel="stylesheet">
     <title>Anime Requester</title>
 </head>
 <body>
 <form onsubmit="onRecherche(event)">
-    <select id="rechercheType" name="rechercheType" class="form-select form-select-lg mb-3" aria-label="Large select example">
+    <select aria-label="Large select example" class="form-select form-select-lg mb-3" id="rechercheType"
+            name="rechercheType">
         <option selected>Ouvrez ce menu de sélection</option>
         <option value="animeName">Recherche par Nom de l'anime</option>
         <option value="classement">Recherche par Classement de l'anime</option>
@@ -18,16 +19,16 @@
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
-        <input type="text" name="text" class="form-control" id="Text">
+        <input class="form-control" id="Text" name="text" type="text">
     </div>
-    <button id="Recherche" type="submit" class="btn btn-primary btn-">Recherche</button>
-    <button id="Effacer" type="button" class="btn btn-secondary btn-">Effacer</button>
+    <button class="btn btn-primary btn-" id="Recherche" type="submit">Recherche</button>
+    <button class="btn btn-secondary btn-" id="Effacer" type="button">Effacer</button>
 </form>
 
 
 <script src="js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+<script crossorigin="anonymous"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

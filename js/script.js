@@ -26,18 +26,15 @@ function getKey() {
 const KEY = getKey();
 console.log(KEY);
 
-const URL = `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=Fullmetal`;
-
-async function getData() {
+async function getByName(name) {
     try {
-        const response = await fetch(URL, {
+        const response = await fetch(`https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=${name}`, {
             method: "GET",
             headers: {
                 'x-rapidapi-key': KEY,
                 'x-rapidapi-host': 'anime-db.p.rapidapi.com'
             }
         });
-
         if (!response.ok) {
             throw new Error("Erreur HTTP : " + response.status);
         }
@@ -50,16 +47,46 @@ async function getData() {
     }
 }
 
-function getByName(name) {
+async function getByClassement(rank) {
+    try {
+        const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-ranking/${rank}`, {
+            method: "GET",
+            headers: {
+                'x-rapidapi-key': KEY,
+                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
 
+        const data = await response.json();
+        console.log("Données reçues :", data);
+
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
+    }
 }
 
-function getByClassement() {
+async function getByID(id) {
+    try {
+        const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, {
+            method: "GET",
+            headers: {
+                'x-rapidapi-key': KEY,
+                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
 
-}
+        const data = await response.json();
+        console.log("Données reçues :", data);
 
-function getByID(id) {
-
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
+    }
 }
 
 
@@ -73,7 +100,7 @@ function onRecherche(e) {
             getByName(data.get("text"));
             break;
         case "classement":
-            getByClassement();
+            getByClassement(data.get("text"));
             break;
         case "animeID":
             getByID(data.get("text"));
@@ -83,10 +110,3 @@ function onRecherche(e) {
             break;
     }
 }
-
-
-
-
-
-
-
