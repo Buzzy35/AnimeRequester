@@ -1,4 +1,5 @@
 const divCards = document.getElementById("cards");
+const divCategorie = document.getElementById("categories");
 
 function getKey() {
     const cookies = document.cookie.split("; ");
@@ -29,12 +30,16 @@ const KEY = getKey();
 console.log(KEY);
 
 async function getByName(name) {
+
+    const categories = Array.from(document.querySelectorAll("#categories input[type='checkbox']:checked"))
+        .map(checkbox => checkbox.id);
+
+    const cat = "&genres=" + categories.join("%2C").replace(" ", "%20");
+
     try {
-        const response = await fetch(`https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=${name}`, {
-            method: "GET",
-            headers: {
-                'x-rapidapi-key': KEY,
-                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+        const response = await fetch(`https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=${name + cat}`, {
+            method: "GET", headers: {
+                'x-rapidapi-key': KEY, 'x-rapidapi-host': 'anime-db.p.rapidapi.com'
             }
         });
         if (!response.ok) {
@@ -57,10 +62,8 @@ async function getByName(name) {
 async function getByClassement(rank) {
     try {
         const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-ranking/${rank}`, {
-            method: "GET",
-            headers: {
-                'x-rapidapi-key': KEY,
-                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            method: "GET", headers: {
+                'x-rapidapi-key': KEY, 'x-rapidapi-host': 'anime-db.p.rapidapi.com'
             }
         });
         if (!response.ok) {
@@ -80,10 +83,8 @@ async function getByClassement(rank) {
 async function getByID(id) {
     try {
         const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, {
-            method: "GET",
-            headers: {
-                'x-rapidapi-key': KEY,
-                'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            method: "GET", headers: {
+                'x-rapidapi-key': KEY, 'x-rapidapi-host': 'anime-db.p.rapidapi.com'
             }
         });
         if (!response.ok) {
@@ -122,7 +123,6 @@ function onRecherche(e) {
 }
 
 function addAnime(anime) {
-
     divCards.innerHTML += `
         <div class="card" style="width: 18rem; margin: 10px;">
             <img src="${anime.image}" class="card-img-top" alt="${anime.title}">
@@ -134,6 +134,36 @@ function addAnime(anime) {
         </div>
     `;
 }
+
+async function addCategorie() {
+
+    try {
+        const response = await fetch(`https://anime-db.p.rapidapi.com/genre`, {
+            method: "GET", headers: {
+                'x-rapidapi-key': KEY, 'x-rapidapi-host': 'anime-db.p.rapidapi.com'
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+
+        const data = await response.json();
+
+        divCategorie.innerHTML = ``;
+
+        data.forEach((c) => {
+            divCategorie.innerHTML += `
+        <input type="checkbox" class="btn-check" value="${c._id}" id="${c._id}" autocomplete="off">
+        <label class="btn btn-outline-primary" for="${c._id}">${c._id}</label>
+    `;
+        });
+
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
+    }
+}
+
+addCategorie();
 
 
 
