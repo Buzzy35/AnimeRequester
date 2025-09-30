@@ -157,7 +157,7 @@ async function addCategorie() {
         data.forEach((c) => {
             divCategorie.innerHTML += `
         <input type="checkbox" class="btn-check" value="${c._id}" id="${c._id}" autocomplete="off">
-        <label class="btn btn-outline-primary" for="${c._id}">${c._id}</label>
+        <label class="btn btn-primary me-2" for="${c._id}">${c._id}</label>
     `;
         });
 
