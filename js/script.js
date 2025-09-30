@@ -165,11 +165,22 @@ async function addCategorie() {
 
 function themeChange() {
     const html = document.documentElement;
-    if (html.getAttribute("data-bs-theme") === "dark") {
+    const currentTheme = html.getAttribute("data-bs-theme");
+
+    if (currentTheme === "dark") {
         html.setAttribute("data-bs-theme", "light");
+        sessionStorage.setItem("theme", "light");
     } else {
         html.setAttribute("data-bs-theme", "dark");
+        sessionStorage.setItem("theme", "dark");
     }
 }
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = sessionStorage.getItem("theme");
+    if (savedTheme) {
+        document.documentElement.setAttribute("data-bs-theme", savedTheme);
+        document.getElementById("theme-switch").checked = (savedTheme === "dark");
+    }
+});
 
 addCategorie();
