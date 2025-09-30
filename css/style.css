@@ -1,0 +1,39 @@
+
+
+
+
+input#theme-switch {
+    position: fixed; 
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    appearance: none;
+    width: 80px;
+    height: 40px;
+    background-color: #ededed;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+}
+
+input#theme-switch::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-color: #323950;
+    border-radius: 40px;
+    transform: scale(0.8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: left 0.7s, background-image 0.7s;
+    background-image: url('../img/light-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+
+input#theme-switch:checked::after {
+    left: 40px;
+    background-image: url('../img/dark-icon.png');
+}
