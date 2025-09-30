@@ -8,23 +8,49 @@
     <title>Anime Requester</title>
 </head>
 <body>
-<form onsubmit="onRecherche(event)">
-    <select aria-label="Large select example" class="form-select form-select-lg mb-3" id="rechercheType"
-            name="rechercheType">
-        <option selected value="animeName">Recherche par Nom de l'anime</option>
-        <option value="classement">Recherche par Classement de l'anime</option>
-        <option value="animeID">Recherche par ID</option>
-    </select>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Text</span>
-        <label for="Text"></label><input class="form-control" id="Text" name="text" type="text">
+<main class="container">
+    <div class="d-flex justify-content-end mt-3">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="theme-switch" onchange="themeChange()">
+        </div>
     </div>
-    <button class="btn btn-primary btn-" id="Recherche" type="submit">Recherche</button>
-    <button class="btn btn-secondary btn-" id="Effacer" type="button">Effacer</button>
-</form>
 
-<div id="cards" class="row"></div>
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Recherche d'Anime</h1>
+        <p class="text-muted">Utilisez les options ci-dessous pour trouver un anime par nom, classement , genre ou ID.</p>
+    </div>  
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form onsubmit="onRecherche(event)">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4">
+                        <select class="form-select" id="rechercheType" name="rechercheType">
+                            <option selected value="animeName">Recherche par Nom de l'anime</option>
+                            <option value="classement">Recherche par Classement de l'anime</option>
+                            <option value="animeID">Recherche par ID</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" id="Text" name="text" type="text" placeholder="Entrez votre recherche...">
+                    </div>
+                    <div class="col-md-3 d-flex gap-2">
+                        <button class="btn btn-primary flex-fill" id="Recherche" type="submit">Rechercher</button>
+                        <button class="btn btn-outline-secondary flex-fill" id="Effacer" type="button">Effacer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="cards" class="row g-4">
+    </div>
+
+</main>
+
+<footer class="text-center mt-5 py-3 border-top">
+    <small>Projet réalisé par DEGROUX Mathieu et SANTIER Thomas</small>
+</footer>
 
 
 <script src="js/script.js"></script>
