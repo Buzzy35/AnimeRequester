@@ -191,7 +191,7 @@ selectRecherche.addEventListener("change", (e) => {
     }
 });
 
-buttonEffacer.addEventListener("click", (e) => {
+buttonEffacer.addEventListener("click", () => {
     inputText.value = ``;
     divCards.innerHTML = ``;
 });
