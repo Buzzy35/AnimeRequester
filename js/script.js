@@ -1,5 +1,8 @@
 const divCards = document.getElementById("cards");
 const divCategorie = document.getElementById("categories");
+const selectRecherche = document.getElementById('rechercheType');
+const inputText = document.getElementById('text');
+const buttonEffacer = document.getElementById('effacer');
 
 function getKey() {
     const cookies = document.cookie.split("; ");
@@ -181,6 +184,27 @@ window.addEventListener("DOMContentLoaded", () => {
         document.documentElement.setAttribute("data-bs-theme", savedTheme);
         document.getElementById("theme-switch").checked = (savedTheme === "dark");
     }
+});
+
+selectRecherche.addEventListener("change", (e) => {
+    const valeur = e.target.value;
+
+    switch (valeur) {
+        case 'animeName':
+            inputText.type = "text";
+            break;
+        case 'classement':
+            inputText.type = "number";
+            break;
+        case 'animeID':
+            inputText.type = "number";
+            break;
+    }
+});
+
+buttonEffacer.addEventListener("click", () => {
+    inputText.value = ``;
+    divCards.innerHTML = ``;
 });
 
 addCategorie();
