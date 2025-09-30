@@ -1,33 +1,33 @@
 const divCards = document.getElementById("cards");
 const divCategorie = document.getElementById("categories");
 
-    function getKey() {
-        const cookies = document.cookie.split("; ");
-        let cookieValue = null;
+function getKey() {
+    const cookies = document.cookie.split("; ");
+    let cookieValue = null;
 
-        for (let c of cookies) {
-            const [key, value] = c.split("=");
-            if (key === "KEY") {
-                cookieValue = decodeURIComponent(value);
-                break;
-            }
+    for (let c of cookies) {
+        const [key, value] = c.split("=");
+        if (key === "KEY") {
+            cookieValue = decodeURIComponent(value);
+            break;
         }
-        if (cookieValue) {
-            return cookieValue;
-        } else {
-            const cookieValue = prompt("Quelle est votre cle d'API");
-
-            let date = new Date();
-            date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
-            let expires = "expires=" + date.toUTCString();
-
-            document.cookie = `KEY=${cookieValue}; ${expires}; path=/`;
-        }
-        return cookieValue;
     }
+    if (cookieValue) {
+        return cookieValue;
+    } else {
+        const cookieValue = prompt("Quelle est votre cle d'API");
 
-    const KEY = getKey();
-    console.log(KEY);
+        let date = new Date();
+        date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+
+        document.cookie = `KEY=${cookieValue}; ${expires}; path=/`;
+    }
+    return cookieValue;
+}
+
+const KEY = getKey();
+console.log(KEY);
 
 async function getByName(name) {
 
@@ -46,18 +46,18 @@ async function getByName(name) {
             throw new Error("Erreur HTTP : " + response.status);
         }
 
-            const data = await response.json();
+        const data = await response.json();
 
-            divCards.innerHTML = ``;
+        divCards.innerHTML = ``;
 
-            data.data.forEach(anime => {
-                addAnime(anime);
-            });
+        data.data.forEach(anime => {
+            addAnime(anime);
+        });
 
-        } catch (error) {
-            console.error("Erreur lors du fetch :", error);
-        }
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
     }
+}
 
 async function getByClassement(rank) {
     try {
@@ -70,15 +70,15 @@ async function getByClassement(rank) {
             throw new Error("Erreur HTTP : " + response.status);
         }
 
-            const data = await response.json();
+        const data = await response.json();
 
-            divCards.innerHTML = ``;
-            addAnime(data);
+        divCards.innerHTML = ``;
+        addAnime(data);
 
-        } catch (error) {
-            console.error("Erreur lors du fetch :", error);
-        }
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
     }
+}
 
 async function getByID(id) {
     try {
@@ -91,36 +91,36 @@ async function getByID(id) {
             throw new Error("Erreur HTTP : " + response.status);
         }
 
-            const data = await response.json();
+        const data = await response.json();
 
-            divCards.innerHTML = ``;
-            addAnime(data);
+        divCards.innerHTML = ``;
+        addAnime(data);
 
-        } catch (error) {
-            console.error("Erreur lors du fetch :", error);
-        }
+    } catch (error) {
+        console.error("Erreur lors du fetch :", error);
     }
+}
 
-    function onRecherche(e) {
-        e.preventDefault();
+function onRecherche(e) {
+    e.preventDefault();
 
-        const data = new FormData(e.target);
+    const data = new FormData(e.target);
 
-        switch (data.get("rechercheType")) {
-            case "animeName":
-                getByName(data.get("text"));
-                break;
-            case "classement":
-                getByClassement(data.get("text"));
-                break;
-            case "animeID":
-                getByID(data.get("text"));
-                break;
-            default:
-                console.error("Type de recherche invalide");
-                break;
-        }
+    switch (data.get("rechercheType")) {
+        case "animeName":
+            getByName(data.get("text"));
+            break;
+        case "classement":
+            getByClassement(data.get("text"));
+            break;
+        case "animeID":
+            getByID(data.get("text"));
+            break;
+        default:
+            console.error("Type de recherche invalide");
+            break;
     }
+}
 
 function addAnime(anime) {
     divCards.innerHTML += `
@@ -163,19 +163,13 @@ async function addCategorie() {
     }
 }
 
+function themeChange() {
+    const html = document.documentElement;
+    if (html.getAttribute("data-bs-theme") === "dark") {
+        html.setAttribute("data-bs-theme", "light");
+    } else {
+        html.setAttribute("data-bs-theme", "dark");
+    }
+}
+
 addCategorie();
-
-
-
-    function themeChange() {
-                const html = document.documentElement;
-                if (html.getAttribute("data-bs-theme") === "dark") {
-                    html.setAttribute("data-bs-theme", "light");
-                } else {
-                    html.setAttribute("data-bs-theme", "dark");
-                }
-            }
-
-
-
-
