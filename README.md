@@ -19,5 +19,5 @@ Vous pouvez rechercher un anime de différentes manières :
 - Dépôt GitHub : [https://github.com/Buzzy35/AnimeRequester](https://github.com/Buzzy35/AnimeRequester)
 
 ## Accès clée API
-Pour obtenir la clé API, il faut créer un compte sur RapidAPI (https://rapidapi.com/hub)et choisir la version gratuite.
+Pour obtenir la clé API, il faut créer un compte sur RapidAPI [https://rapidapi.com/hub](https://rapidapi.com/hub) et choisir la version gratuite.
 Ensuite, recherche AnimeDB, récupère la clé API et entre-la dans le site.
