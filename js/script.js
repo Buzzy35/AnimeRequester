@@ -172,6 +172,7 @@ function addAnime(anime) {
                 <p class="card-text">Id : ${anime._id}</p>
                 <p class="card-text">Classement : ${anime.ranking}</p>
                 <p class="card-text">Categories : ${anime.genres}</p>
+                <p class="card-text">Nb d'episode : ${anime.episodes}</p>
                 <p class="card-text">${anime.synopsis.slice(0, 100)}...</p>
                 <a href="${anime.link}" target="_blank" class="btn btn-primary">Voir sur MAL</a>
             </div>
