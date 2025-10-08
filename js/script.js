@@ -159,6 +159,8 @@ function addAnime(anime) {
             <img src="${anime.image}" class="card-img-top" alt="${anime.title}">
             <div class="card-body">
                 <h5 class="card-title">${anime.title}</h5>
+                <p class="card-text">Id : ${anime._id}</p>
+                <p class="card-text">Classement : ${anime.ranking}</p>
                 <p class="card-text">${anime.synopsis.slice(0, 100)}...</p>
                 <a href="${anime.link}" target="_blank" class="btn btn-primary">Voir sur MAL</a>
             </div>
