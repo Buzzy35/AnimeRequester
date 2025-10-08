@@ -52,10 +52,22 @@ async function getByName(name) {
         const data = await response.json();
 
         divCards.innerHTML = ``;
-
-        data.data.forEach(anime => {
-            addAnime(anime);
-        });
+        if (data.data.length === 0) {
+            divCards.innerHTML = `
+            <div class="card" style="width: 18rem; margin: 10px;">
+                <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
+                <div class="card-body">
+                    <h5 class="card-title">pas resultat trouver</h5>
+                    <p class="card-text"></p>
+                </div>
+            </div>
+            `;
+        }
+        else {
+            data.data.forEach(anime => {
+                addAnime(anime);
+            });
+        }
 
     } catch (error) {
         console.error("Erreur lors du fetch :", error);
@@ -79,7 +91,15 @@ async function getByClassement(rank) {
         addAnime(data);
 
     } catch (error) {
-        console.error("Erreur lors du fetch :", error);
+        divCards.innerHTML = `
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
+            <div class="card-body">
+                <h5 class="card-title">pas resultat trouver</h5>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        `;
     }
 }
 
@@ -100,7 +120,15 @@ async function getByID(id) {
         addAnime(data);
 
     } catch (error) {
-        console.error("Erreur lors du fetch :", error);
+        divCards.innerHTML = `
+        <div class="card" style="width: 18rem; margin: 10px;">
+            <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
+            <div class="card-body">
+                <h5 class="card-title">pas resultat trouver</h5>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        `;
     }
 }
 
@@ -157,7 +185,7 @@ async function addCategorie() {
         data.forEach((c) => {
             divCategorie.innerHTML += `
         <input type="checkbox" class="btn-check" value="${c._id}" id="${c._id}" autocomplete="off">
-        <label class="btn btn-outline-primary me-1 mb-0.5" for="${c._id}">${c._id}</label>
+        <label class="btn btn-outline-primary me-1 mb-1" for="${c._id}">${c._id}</label>
     `;
         });
 
