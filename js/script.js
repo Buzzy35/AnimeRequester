@@ -4,6 +4,16 @@ const selectRecherche = document.getElementById('rechercheType');
 const inputText = document.getElementById('text');
 const buttonEffacer = document.getElementById('effacer');
 
+const afficheCategorie = document.getElementById("checkNativeSwitch");
+afficheCategorie.addEventListener("change", (e) => {
+    if (e.target.checked) {
+        addCategorie();
+    } else {
+        divCategorie.innerHTML = ``;
+    }
+});
+
+
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -57,7 +67,7 @@ async function getByName(name) {
             <div class="card" style="width: 18rem; margin: 10px;">
                 <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
                 <div class="card-body">
-                    <h5 class="card-title">pas resultat trouver</h5>
+                    <h5 class="card-title">pas resultat trouvé</h5>
                     <p class="card-text"></p>
                 </div>
             </div>
@@ -95,7 +105,7 @@ async function getByClassement(rank) {
         <div class="card" style="width: 18rem; margin: 10px;">
             <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
             <div class="card-body">
-                <h5 class="card-title">pas resultat trouver</h5>
+                <h5 class="card-title">pas resultat trouvé</h5>
                 <p class="card-text"></p>
             </div>
         </div>
@@ -124,7 +134,7 @@ async function getByID(id) {
         <div class="card" style="width: 18rem; margin: 10px;">
             <img src="img/notfind.jpg" class="card-img-top" alt="notfind">
             <div class="card-body">
-                <h5 class="card-title">pas resultat trouver</h5>
+                <h5 class="card-title">pas resultat trouvé</h5>
                 <p class="card-text"></p>
             </div>
         </div>
@@ -236,5 +246,3 @@ buttonEffacer.addEventListener("click", () => {
     inputText.value = ``;
     divCards.innerHTML = ``;
 });
-
-addCategorie();
