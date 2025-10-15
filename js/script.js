@@ -3,8 +3,11 @@ const divCategorie = document.getElementById("categories");
 const selectRecherche = document.getElementById('rechercheType');
 const inputText = document.getElementById('text');
 const buttonEffacer = document.getElementById('effacer');
-
 const afficheCategorie = document.getElementById("checkNativeSwitch");
+
+/**
+ * add event for change thecheckbox to activate or desactivate the categories
+ */
 afficheCategorie.addEventListener("change", (e) => {
     if (e.target.checked) {
         addCategorie();
@@ -13,7 +16,9 @@ afficheCategorie.addEventListener("change", (e) => {
     }
 });
 
-
+/**
+ * function to get the API key in the local storage or in a prompt
+ */
 function getKey() {
     const cookies = document.cookie.split("; ");
     let cookieValue = null;
@@ -42,6 +47,11 @@ function getKey() {
 const KEY = getKey();
 console.log(KEY);
 
+/**
+ * function search anime by name into the API
+ * @param name name of the anime
+ * @returns {Promise<void>}
+ */
 async function getByName(name) {
 
     const categories = Array.from(document.querySelectorAll("#categories input[type='checkbox']:checked"))
@@ -72,8 +82,7 @@ async function getByName(name) {
                 </div>
             </div>
             `;
-        }
-        else {
+        } else {
             data.data.forEach(anime => {
                 addAnime(anime);
             });
@@ -84,6 +93,11 @@ async function getByName(name) {
     }
 }
 
+/**
+ * function to search anime by casement into the API
+ * @param rank rank of the anime
+ * @returns {Promise<void>}
+ */
 async function getByClassement(rank) {
     try {
         const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-ranking/${rank}`, {
@@ -113,6 +127,11 @@ async function getByClassement(rank) {
     }
 }
 
+/**
+ * funtion to search anime by id into the API
+ * @param id id of the anime
+ * @returns {Promise<void>}
+ */
 async function getByID(id) {
     try {
         const response = await fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${id}`, {
@@ -142,6 +161,10 @@ async function getByID(id) {
     }
 }
 
+/**
+ * function run by the search button
+ * @param e event of the button
+ */
 function onRecherche(e) {
     e.preventDefault();
 
@@ -163,6 +186,10 @@ function onRecherche(e) {
     }
 }
 
+/**
+ * funtion to add a card with the anime
+ * @param anime anime to add
+ */
 function addAnime(anime) {
     divCards.innerHTML += `
         <div class="card" style="width: 18rem; margin: 10px;">
@@ -180,6 +207,10 @@ function addAnime(anime) {
     `;
 }
 
+/**
+ * funtion to add the categories to check into the form
+ * @returns {Promise<void>}
+ */
 async function addCategorie() {
 
     try {
@@ -208,6 +239,9 @@ async function addCategorie() {
     }
 }
 
+/**
+ * function to change the theme
+ */
 function themeChange() {
     const html = document.documentElement;
     const currentTheme = html.getAttribute("data-bs-theme");
@@ -220,6 +254,10 @@ function themeChange() {
         sessionStorage.setItem("theme", "dark");
     }
 }
+
+/**
+ * funtion to load a theme saved in the session storage
+ */
 window.addEventListener("DOMContentLoaded", () => {
     const savedTheme = sessionStorage.getItem("theme");
     if (savedTheme) {
@@ -228,6 +266,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+/**
+ * funtion to change the type of the input where switch the type of the search
+ */
 selectRecherche.addEventListener("change", (e) => {
     const valeur = e.target.value;
 
@@ -244,6 +285,9 @@ selectRecherche.addEventListener("change", (e) => {
     }
 });
 
+/**
+ * button to clear the input and the cards
+ */
 buttonEffacer.addEventListener("click", () => {
     inputText.value = ``;
     divCards.innerHTML = ``;
