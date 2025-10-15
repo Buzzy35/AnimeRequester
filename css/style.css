@@ -1,9 +1,6 @@
 
-
-
-
 input#theme-switch {
-    position: fixed; 
+    position: fixed;
     right: 10px;
     top: 10px;
     cursor: pointer;
@@ -21,6 +18,7 @@ input#theme-switch:focus {
     outline: none;
     box-shadow: none;
 }
+
 input#theme-switch::after {
     content: '';
     width: 40px;
